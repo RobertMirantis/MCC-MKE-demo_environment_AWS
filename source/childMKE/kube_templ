@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: UCP_CA.PEM 
+    server: https://HSERVER
+  name: USERVER
+contexts:
+- context:
+    cluster: USERVER
+    user: USERVER
+  name: USERVER
+current-context: USERVER
+kind: Config
+preferences: {}
+users:
+- name: USERVER
+  user:
+    client-certificate-data: UCP_CERT.PEM 
+    client-key-data: UCP_KEY.PEM 

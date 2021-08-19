@@ -1,0 +1,40 @@
+apiVersion: cluster.k8s.io/v1alpha1
+kind: Cluster
+metadata:
+  labels:
+    kaas.mirantis.com/provider: aws
+    kaas.mirantis.com/region: region-one
+  name: demo
+  namespace: default
+spec:
+  providerSpec:
+    value:
+      apiVersion: aws.kaas.mirantis.com/v1alpha1
+      credentials: cloud-config
+      helmReleases:
+      - name: stacklight
+        values:
+          alertmanagerSimpleConfig:
+            email:
+              enabled: false
+            slack:
+              enabled: false
+          elasticsearch:
+            logstashRetentionTime: "30"
+            persistentVolumeClaimSize: 30Gi
+          highAvailabilityEnabled: false
+          logging:
+            enabled: true
+            level: INFO
+          prometheusServer:
+            customAlerts: []
+            persistentVolumeClaimSize: 16Gi
+            retentionSize: 15GB
+            retentionTime: 15d
+            watchDogAlertEnabled: false
+      kind: AWSClusterProviderSpec
+      nodeCidr: 10.10.10.0/24
+      publicKeys:
+      - name: bootstrap-key
+      region: eu-central-1
+      release: mke-7-0-0-3-4-0

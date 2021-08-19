@@ -1,0 +1,21 @@
+
+apiVersion: cluster.k8s.io/v1alpha1
+kind: Machine
+metadata:
+  name: machine4
+  namespace: default
+  labels:
+    kaas.mirantis.com/provider: aws
+    kaas.mirantis.com/region: region-one
+    cluster.sigs.k8s.io/cluster-name: demo
+spec:
+  providerSpec:
+    value:
+      ami:
+        id: ami-024e928dca73bfe66
+      apiVersion: aws.kaas.mirantis.com/v1alpha1
+      instanceType: c5d.2xlarge
+      kind: AWSMachineProviderSpec
+      metadata:
+        creationTimestamp: null
+      rootDeviceSize: 120
